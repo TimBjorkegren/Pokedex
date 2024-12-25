@@ -1,0 +1,15 @@
+ section.Top-Bar {
+     display: flex;
+     justify-content: center;
+     background-color: rgb(205, 81, 81);
+     width: 100vw;
+     margin: 0;
+     top: 0;
+     left: 0;
+     box-sizing: border-box;
+     position: absolute;
+ }
+
+ img {
+     s
+ }
