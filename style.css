@@ -7,9 +7,13 @@
      top: 0;
      left: 0;
      box-sizing: border-box;
-     position: absolute;
+     position: fixed;
  }
 
- img {
-     s
+ .Main-Page {
+     display: flex;
+     justify-content: center;
+     padding-top: 70px;
  }
+
+ #form {}
