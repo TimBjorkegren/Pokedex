@@ -39,3 +39,12 @@ section.Top-Bar {
     /* Adjust it to be exactly centered */
     display: block;
 }
+
+.Pokemon-Container {
+    margin-top: 100px;
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
