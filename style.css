@@ -1,19 +1,41 @@
- section.Top-Bar {
-     display: flex;
-     justify-content: center;
-     background-color: rgb(205, 81, 81);
-     width: 100vw;
-     margin: 0;
-     top: 0;
-     left: 0;
-     box-sizing: border-box;
-     position: fixed;
- }
+section.Top-Bar {
+    display: flex;
+    justify-content: flex-start;
+    /* Align items to the left */
+    background-color: rgb(205, 81, 81);
+    width: 100vw;
+    margin: 0;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    position: fixed;
+    padding: 1rem;
+    align-items: center;
+    /* Centers the button vertically */
+}
 
- .Main-Page {
-     display: flex;
-     justify-content: center;
-     padding-top: 70px;
- }
+.Main-Page {
+    display: flex;
+    justify-content: center;
+    padding-top: 120px;
+    width: 100%;
+}
 
- #form {}
+#menu-button {
+    background-color: transparent;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    flex-grow: 0;
+    /* Prevents button from stretching */
+}
+
+.center-image {
+    position: absolute;
+    /* Allows the image to be positioned independently */
+    left: 50%;
+    /* Move it to the center */
+    transform: translateX(-50%);
+    /* Adjust it to be exactly centered */
+    display: block;
+}

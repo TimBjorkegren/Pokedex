@@ -7,19 +7,24 @@
     <title>PokeDex</title>
     <link rel="stylesheet" href="style.css">
     <script src="jquery-3.7.1.min.js"></script>
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </head>
 
 <body>
     <div class="Main-Page">
         <section class="Top-Bar">
-            <img src="https://user-images.githubusercontent.com/29473781/180619084-a56960ab-7efa-4e34-9d33-4e3e581d62ff.png"
+            <img class="center-image"
+                src="https://user-images.githubusercontent.com/29473781/180619084-a56960ab-7efa-4e34-9d33-4e3e581d62ff.png"
                 style="width: 150px; height: auto;">
+            <button id="menu-button" type="button">
+                <img src="https://cdn2.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_sliders-512.png"
+                    style="width: 30px; height: auto;">
+            </button>
         </section>
-        <form id="form">
-            <input type="search" id="query" name="q" placeholder="Search Pokemons...">
-            <button>Search</button>
-        </form>
+        <input type="text" id="pokemonName" name="q" placeholder="Search Pokemon...">
+        <button onclick="fetchData()">Fetch Pokemon</button><br>
+
+        <img src="" alt="Pokemon Sprite" id="pokemonSprite" style="display: none;">
     </div>
 </body>
 
