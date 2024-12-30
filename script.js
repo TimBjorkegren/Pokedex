@@ -13,12 +13,28 @@ async function fetchData() {
         console.log(data);
 
         const pokemonSprite = data.sprites.front_default;
+        const pokemonNameFormatted = data.name.charAt(0).toUpperCase() + data.name.slice(1);
         const imgElement = document.getElementById("pokemonSprite");
 
+        /*
         imgElement.src = pokemonSprite;
-        imgElement.style.display = "block";
+        imgElement.style.display = "block"; */
+
+        const container = document.getElementById("pokemonContainer");
+        container.innerHTML = "";
+        const card = document.createElement("div");
+        card.className = "PokemonCard";
+
+        card.innerHTML = `
+            <img src="${pokemonSprite}" alt="${pokemonNameFormatted}">
+            <p>${pokemonNameFormatted}</p>
+        `;
+
+        container.appendChild(card);
+
 
     } catch (error) {
         console.error(error);
+        alert("Pokemon was not found!")
     }
 }
