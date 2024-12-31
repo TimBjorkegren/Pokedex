@@ -18,7 +18,7 @@ async function fetchData() {
         const container = document.getElementById("pokemonContainer");
         container.innerHTML = "";
         const card = document.createElement("div");
-        card.className = "PokemonCard";
+        card.className = "Pokemon-Card";
 
         card.innerHTML = `
             <img src="${pokemonSprite}" alt="${pokemonNameFormatted}">
@@ -50,14 +50,31 @@ async function loadAllPokemon() {
 
 
             const pokemonSprite = detailsData.sprites.front_default;
-            const pokemonNameFormatted = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+
+            const hpStat = detailsData.stats.find(stat => stat.stat.name === "hp");
+            const attackStat = detailsData.stats.find(stat => stat.stat.name === "attack");
+            const defenseStat = detailsData.stats.find(stat => stat.stat.name === "defense");
+
+            const pokemonHPName = hpStat ? hpStat.stat.name : "Unknown";
+            const pokemonHPValue = hpStat ? hpStat.base_stat : "Unknown";
+            const pokemonAttackStatName = attackStat ? attackStat.stat.name : "Unknown";
+            const pokemonAttackValue = attackStat ? attackStat.base_stat : "Unknown";
+            const pokemonDefenseName = defenseStat ? defenseStat.stat.name : "Unknown";
+            const pokemonDefenseStatValue = defenseStat ? defenseStat.base_stat : "Unknown";
+
+
+            const pokemonNameFormatted = pokemon.name.trim().replace(/^"|"$/g, '').charAt(0).toUpperCase() + pokemon.name.slice(1);
+            console.log(pokemon.name)
 
             const card = document.createElement("div");
             card.className = "Pokemon-Card";
 
             card.innerHTML = `
         <img src ="${pokemonSprite}">
-        <p>"${pokemonNameFormatted}"</p>
+        <p>${pokemonNameFormatted}</p>
+         <p>${pokemonHPName}: ${pokemonHPValue}</p>
+         <p>${pokemonAttackStatName}: ${pokemonAttackValue}</p>
+           <p>${pokemonDefenseName}: ${pokemonDefenseStatValue}</p>
         `;
 
             container.appendChild(card)
