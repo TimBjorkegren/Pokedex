@@ -49,3 +49,23 @@ section.Top-Bar {
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.Element-Container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 100%;
+    height: auto;
+    margin-top: 50px;
+
+}
+
+.Pokemon-Card {
+    background-color: rgb(48, 44, 44);
+    border-radius: 5%;
+}
+
+.Pokemon-Card p {
+    color: white;
+}
