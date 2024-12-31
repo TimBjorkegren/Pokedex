@@ -13,20 +13,40 @@ async function fetchData() {
         console.log(data);
 
         const pokemonSprite = data.sprites.front_default;
-        const pokemonNameFormatted = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+
 
         const container = document.getElementById("pokemonContainer");
         container.innerHTML = "";
+
+
+        const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
+        const hpStat = data.stats.find(stat => stat.stat.name === "hp");
+        const attackStat = data.stats.find(stat => stat.stat.name === "attack");
+        const defenseStat = data.stats.find(stat => stat.stat.name === "defense");
+
+        const pokemonHPName = hpStat ? hpStat.stat.name.toUpperCase() : "Unknown";
+        const pokemonHPValue = hpStat ? hpStat.base_stat : "Unknown";
+        const pokemonAttackStatName = attackStat ? capitalizeFirstLetter(attackStat.stat.name) : "Unknown";
+        const pokemonAttackValue = attackStat ? attackStat.base_stat : "Unknown";
+        const pokemonDefenseName = defenseStat ? capitalizeFirstLetter(defenseStat.stat.name) : "Unknown";
+        const pokemonDefenseStatValue = defenseStat ? defenseStat.base_stat : "Unknown";
+
+        const pokemonNameFormatted = data.name.trim().replace(/^"|"$/g, '').charAt(0).toUpperCase() + data.name.slice(1);
+
         const card = document.createElement("div");
         card.className = "Pokemon-Card";
 
         card.innerHTML = `
-            <img src="${pokemonSprite}" alt="${pokemonNameFormatted}">
-            <p>${pokemonNameFormatted}</p>
-        `;
+                    <img src="${pokemonSprite}" alt="${pokemonNameFormatted}">
+                    <h1>${pokemonNameFormatted}</h1>
+                    <p>${pokemonHPName}: ${pokemonHPValue}</p>
+                    <p>${pokemonAttackStatName}: ${pokemonAttackValue}</p>
+                    <p>${pokemonDefenseName}: ${pokemonDefenseStatValue}</p>
+                `;
 
         container.appendChild(card);
-
+        ;
 
     } catch (error) {
         console.error(error);
@@ -111,11 +131,38 @@ async function fetchByType(type) {
         container.innerHTML = "";
 
         if (filteredPokemons.length > 0) {
-            filteredPokemons.forEach(pokemon => {
-                const pokemonElement = document.createElement("div");
-                pokemonElement.textContent = pokemon.name;
-                container.appendChild(pokemonElement);
+            filteredPokemons.forEach(details => {
+                const pokemonSprite = details.sprites.front_default;
+
+                const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
+                const hpStat = details.stats.find(stat => stat.stat.name === "hp");
+                const attackStat = details.stats.find(stat => stat.stat.name === "attack");
+                const defenseStat = details.stats.find(stat => stat.stat.name === "defense");
+
+                const pokemonHPName = hpStat ? hpStat.stat.name.toUpperCase() : "Unknown";
+                const pokemonHPValue = hpStat ? hpStat.base_stat : "Unknown";
+                const pokemonAttackStatName = attackStat ? capitalizeFirstLetter(attackStat.stat.name) : "Unknown";
+                const pokemonAttackValue = attackStat ? attackStat.base_stat : "Unknown";
+                const pokemonDefenseName = defenseStat ? capitalizeFirstLetter(defenseStat.stat.name) : "Unknown";
+                const pokemonDefenseStatValue = defenseStat ? defenseStat.base_stat : "Unknown";
+
+                const pokemonNameFormatted = details.name.trim().replace(/^"|"$/g, '').charAt(0).toUpperCase() + details.name.slice(1);
+
+                const card = document.createElement("div");
+                card.className = "Pokemon-Card";
+
+                card.innerHTML = `
+                    <img src="${pokemonSprite}" alt="${pokemonNameFormatted}">
+                    <h1>${pokemonNameFormatted}</h1>
+                    <p>${pokemonHPName}: ${pokemonHPValue}</p>
+                    <p>${pokemonAttackStatName}: ${pokemonAttackValue}</p>
+                    <p>${pokemonDefenseName}: ${pokemonDefenseStatValue}</p>
+                `;
+
+                container.appendChild(card);
             });
+            ;
         } else {
             container.textContent("No pokemons were found in this type of element")
         }
