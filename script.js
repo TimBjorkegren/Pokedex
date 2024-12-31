@@ -51,15 +51,17 @@ async function loadAllPokemon() {
 
             const pokemonSprite = detailsData.sprites.front_default;
 
+            const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
             const hpStat = detailsData.stats.find(stat => stat.stat.name === "hp");
             const attackStat = detailsData.stats.find(stat => stat.stat.name === "attack");
             const defenseStat = detailsData.stats.find(stat => stat.stat.name === "defense");
 
-            const pokemonHPName = hpStat ? hpStat.stat.name : "Unknown";
+            const pokemonHPName = hpStat ? hpStat.stat.name.toUpperCase() : "Unknown";
             const pokemonHPValue = hpStat ? hpStat.base_stat : "Unknown";
-            const pokemonAttackStatName = attackStat ? attackStat.stat.name : "Unknown";
+            const pokemonAttackStatName = attackStat ? capitalizeFirstLetter(attackStat.stat.name) : "Unknown";
             const pokemonAttackValue = attackStat ? attackStat.base_stat : "Unknown";
-            const pokemonDefenseName = defenseStat ? defenseStat.stat.name : "Unknown";
+            const pokemonDefenseName = defenseStat ? capitalizeFirstLetter(defenseStat.stat.name) : "Unknown";
             const pokemonDefenseStatValue = defenseStat ? defenseStat.base_stat : "Unknown";
 
 
@@ -87,3 +89,39 @@ async function loadAllPokemon() {
 }
 
 document.addEventListener("DOMContentLoaded", loadAllPokemon);
+
+async function fetchByType(type) {
+
+    const container = document.getElementById("pokemonContainer");
+    container.innerHTML = "Loading...";
+
+    try {
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=150")
+        const data = await response.json();
+
+        const filteredPokemons = [];
+        for (const pokemon of data.results) {
+            const detailsResponse = await fetch(pokemon.url);
+            const details = await detailsResponse.json();
+            if (details.types.some(t => t.type.name === type)) {
+                filteredPokemons.push(details);
+            }
+        }
+
+        container.innerHTML = "";
+
+        if (filteredPokemons.length > 0) {
+            filteredPokemons.forEach(pokemon => {
+                const pokemonElement = document.createElement("div");
+                pokemonElement.textContent = pokemon.name;
+                container.appendChild(pokemonElement);
+            });
+        } else {
+            container.textContent("No pokemons were found in this type of element")
+        }
+
+    } catch (error) {
+        container.textContent = "An error occurred while fetching Pokémon data.";
+        console.error(error);
+    }
+}
