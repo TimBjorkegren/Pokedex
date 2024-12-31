@@ -102,6 +102,15 @@ body {
     width: 100px;
     font-size: 20px;
     font-family: "Fira Sans", serif;
+    cursor: pointer;
+}
+
+button:hover {
+    filter: brightness(1.25);
+}
+
+button:active {
+    filter: brightness(0.5);
 }
 
 .normal {
@@ -182,4 +191,6 @@ body {
 
 .Main-Page input {
     font-family: "Fira Sans", serif;
+    height: 25px;
+    width: 200px;
 }
