@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poiret+One&family=Press+Start+2P&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 section.Top-Bar {
     display: flex;
     justify-content: flex-start;
@@ -70,4 +73,113 @@ section.Top-Bar {
     color: white;
     display: flex;
     justify-content: center;
+}
+
+.Pokemon-Card img {
+    height: auto;
+    width: 150px;
+}
+
+body {
+    background-color: rgb(21, 19, 19);
+}
+
+.Pokemon-Card h1 {
+    display: flex;
+    color: white;
+    font-size: 15px;
+    justify-content: center;
+    font-family: "Press Start 2P", serif;
+}
+
+.Element-Container button {
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 10%;
+    font-size: auto;
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    font-family: "Fira Sans", serif;
+}
+
+.normal {
+    background-color: rgb(152, 117, 74);
+}
+
+.fire {
+    background-color: rgb(212, 94, 51);
+}
+
+.water {
+    background-color: rgb(0, 191, 255);
+}
+
+.electric {
+    background-color: rgb(255, 215, 0);
+}
+
+.grass {
+    background-color: rgb(43, 152, 43);
+}
+
+.ice {
+    background-color: rgb(135, 206, 250);
+}
+
+.fighting {
+    background-color: rgb(139, 19, 19);
+}
+
+.poison {
+    background-color: rgb(136, 6, 136);
+}
+
+.ground {
+    background-color: rgb(210, 180, 140);
+}
+
+.flying {
+    background-color: rgb(113, 93, 210);
+}
+
+.psychic {
+    background-color: rgb(255, 105, 180);
+}
+
+.bug {
+    background-color: rgb(173, 255, 47);
+}
+
+.rock {
+    background-color: rgb(160, 82, 45);
+}
+
+.ghost {
+    background-color: rgb(75, 0, 130);
+}
+
+.dragon {
+    background-color: rgb(72, 61, 139);
+}
+
+.dark {
+    background-color: rgb(29, 47, 47);
+}
+
+.steel {
+    background-color: rgb(192, 192, 192);
+}
+
+.fairy {
+    background-color: rgb(255, 182, 193);
+}
+
+.Main-Page button {
+    font-family: "Fira Sans", serif;
+}
+
+.Main-Page input {
+    font-family: "Fira Sans", serif;
 }

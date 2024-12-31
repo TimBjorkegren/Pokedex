@@ -71,7 +71,7 @@ async function loadAllPokemon() {
 
             card.innerHTML = `
         <img src ="${pokemonSprite}">
-        <p>${pokemonNameFormatted}</p>
+        <h1>${pokemonNameFormatted}</h1>
          <p>${pokemonHPName}: ${pokemonHPValue}</p>
          <p>${pokemonAttackStatName}: ${pokemonAttackValue}</p>
            <p>${pokemonDefenseName}: ${pokemonDefenseStatValue}</p>
