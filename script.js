@@ -94,10 +94,22 @@ async function loadAllPokemon() {
                 fairy: "rgb(255, 182, 193)"
             }
 
+            const typeNameWithColors = detailsData.types.map(typeInfo => {
+                const typeName = typeInfo.type.name;
+                return {
+                    name: typeName,
+                    color: elementColors[typeName]
+                };
+            });
+
+            const typeElements = typeNameWithColors.map(type => {
+                return `<span style="background-color: ${type.color}; padding: 5px; margin: 2px; border-radius: 5px;">${capitalizeFirstLetter(type.name)}</span>`;
+            }).join("");
+
+
             const hpStat = detailsData.stats.find(stat => stat.stat.name === "hp");
             const attackStat = detailsData.stats.find(stat => stat.stat.name === "attack");
             const defenseStat = detailsData.stats.find(stat => stat.stat.name === "defense");
-            const typeName = detailsData.types.map(typeInfo => typeInfo.type.name).join(",");
 
             const pokemonHPName = hpStat ? hpStat.stat.name.toUpperCase() : "Unknown";
             const pokemonHPValue = hpStat ? hpStat.base_stat : "Unknown";
@@ -105,7 +117,6 @@ async function loadAllPokemon() {
             const pokemonAttackValue = attackStat ? attackStat.base_stat : "Unknown";
             const pokemonDefenseName = defenseStat ? capitalizeFirstLetter(defenseStat.stat.name) : "Unknown";
             const pokemonDefenseStatValue = defenseStat ? defenseStat.base_stat : "Unknown";
-            const pokemonTypeName = typeName || "Unknown";
 
 
             const pokemonNameFormatted = pokemon.name.trim().replace(/^"|"$/g, '').charAt(0).toUpperCase() + pokemon.name.slice(1);
@@ -116,7 +127,7 @@ async function loadAllPokemon() {
 
             card.innerHTML = `
         <img src ="${pokemonSprite}">
-        <p>${pokemonTypeName}</p>
+        <p>${typeElements}</p>
         <h1>${pokemonNameFormatted}</h1>
          <p>${pokemonHPName}: ${pokemonHPValue}</p>
          <p>${pokemonAttackStatName}: ${pokemonAttackValue}</p>
