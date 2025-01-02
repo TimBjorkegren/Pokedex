@@ -73,9 +73,31 @@ async function loadAllPokemon() {
 
             const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
+            const elementColors = {
+                normal: "rgb(152, 117, 74)",
+                fire: "rgb(212, 94, 51)",
+                water: "rgb(0, 191, 255)",
+                electric: "rgb(255, 215, 0)",
+                grass: "rgb(43, 152, 43)",
+                ice: "rgb(135, 206, 250)",
+                fighting: "rgb(139, 19, 19)",
+                poison: "rgb(136, 6, 136)",
+                ground: "rgb(210, 180, 140)",
+                flying: "rgb(113, 93, 210)",
+                psychic: "rgb(255, 105, 180)",
+                bug: "rgb(173, 255, 47)",
+                rock: "rgb(160, 82, 45)",
+                ghost: "rgb(75, 0, 130)",
+                dragon: "rgb(72, 61, 139)",
+                dark: "rgb(29, 47, 47)",
+                steel: "rgb(192, 192, 192)",
+                fairy: "rgb(255, 182, 193)"
+            }
+
             const hpStat = detailsData.stats.find(stat => stat.stat.name === "hp");
             const attackStat = detailsData.stats.find(stat => stat.stat.name === "attack");
             const defenseStat = detailsData.stats.find(stat => stat.stat.name === "defense");
+            const typeName = detailsData.types.map(typeInfo => typeInfo.type.name).join(",");
 
             const pokemonHPName = hpStat ? hpStat.stat.name.toUpperCase() : "Unknown";
             const pokemonHPValue = hpStat ? hpStat.base_stat : "Unknown";
@@ -83,6 +105,7 @@ async function loadAllPokemon() {
             const pokemonAttackValue = attackStat ? attackStat.base_stat : "Unknown";
             const pokemonDefenseName = defenseStat ? capitalizeFirstLetter(defenseStat.stat.name) : "Unknown";
             const pokemonDefenseStatValue = defenseStat ? defenseStat.base_stat : "Unknown";
+            const pokemonTypeName = typeName || "Unknown";
 
 
             const pokemonNameFormatted = pokemon.name.trim().replace(/^"|"$/g, '').charAt(0).toUpperCase() + pokemon.name.slice(1);
@@ -93,6 +116,7 @@ async function loadAllPokemon() {
 
             card.innerHTML = `
         <img src ="${pokemonSprite}">
+        <p>${pokemonTypeName}</p>
         <h1>${pokemonNameFormatted}</h1>
          <p>${pokemonHPName}: ${pokemonHPValue}</p>
          <p>${pokemonAttackStatName}: ${pokemonAttackValue}</p>
